@@ -48,9 +48,10 @@ def draw_bar_plot():
     df_bar['Months'] = pd.Categorical(df_bar['Months'], categories=month_order, ordered=True)
 
     # Draw bar plot
-    fig = sns.catplot(df_bar, x='year', y='value', hue='Months', kind='bar', palette='bright', legend='brief', legend_out=False)
-    fig.set_xlabels('Years')
-    fig.set_ylabels('Average Page Views')
+    fig, axes = plt.subplots(figsize=(7,6))
+    sns.barplot(df_bar, x='year', y='value', hue='Months', palette='bright')
+    axes.set_xlabel('Years')
+    axes.set_ylabel('Average Page Views')
 
     # Save image and return fig (don't change this part)
     fig.savefig('bar_plot.png')
